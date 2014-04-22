@@ -1,0 +1,6 @@
+*.sln
+*.suo
+packages/
+*/bin/
+*/obj/
+*.csproj

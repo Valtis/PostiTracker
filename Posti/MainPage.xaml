@@ -1,0 +1,44 @@
+﻿<Page
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Posti"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:UI="using:Microsoft.Advertising.Mobile.UI"
+    xmlns:c ="using:SharedLibrary.Posti.Dao"
+    x:Class="Posti.MainPage"
+    
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Hub Header="Posti" HorizontalAlignment="Left" Height="640" VerticalAlignment="Top" Width="399.999969482422">
+        <HubSection x:Name="PostOrderInfoBox" Header="New item">
+            <DataTemplate>
+                <Grid>
+                    <Grid.Resources>
+                        <c:WebDao x:Key="webDao"/>
+                    </Grid.Resources>
+                    <TextBox x:Name="PostCodeTextBox" Margin="10,0" TextWrapping="Wrap" VerticalAlignment="Top" KeyDown="PostCodeTextBox_OnKeyDown">
+                        <TextBox.Text>
+                            <Binding Source="{StaticResource webDao}" Path="TrackingCode"
+                                  UpdateSourceTrigger="Explicit" Mode="TwoWay"/>
+                        </TextBox.Text>
+                    </TextBox>
+                    <TextBlock x:Name="InsertedItemInfo" Margin="10,57,10,0" TextWrapping="Wrap" RenderTransformOrigin="0.53,0.453" Height="406" VerticalAlignment="Top">
+                        <TextBlock.Text>
+                            <Binding Source="{StaticResource webDao}" Path="Description"/>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+        <HubSection Header="Tracked items">
+            <DataTemplate>
+                <Grid>
+                    <ListView Margin="10"/>
+                </Grid>
+            </DataTemplate>
+        </HubSection>
+    </Hub>
+
+
+</Page>
